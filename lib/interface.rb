@@ -4,6 +4,7 @@ class Interface
   attr_accessor :chosen_artist
   def initialize
     @chosen_artist = nil
+    @chosen_song = nil
   end
 
   def introduce
@@ -22,6 +23,10 @@ class Interface
     'Which song of theirs would you like to see the lyrics for?'
   end
 
+  def receive_title(string)
+    @chosen_song = Input.new(string)
+  end
+
   def suggest_popular_titles
     'Here are some of their most popular songs:'
   end
@@ -31,6 +36,6 @@ class Interface
   end
 
   def request_display_style
-    "Finally, to view lyrics karaoke-style, hit k. For a simple read-out, enter R"
+    'Finally, to view lyrics karaoke-style, hit k. For a simple read-out, enter R'
   end
 end
