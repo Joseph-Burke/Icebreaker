@@ -8,7 +8,7 @@ class WebPage
   def initialize(web_address)
     @web_address = web_address
     @nokogiri = Nokogiri::HTML(URI.open(web_address))
-    @type_of_page = 1
+    @type_of_page = nil
     determine_type
   end
 
