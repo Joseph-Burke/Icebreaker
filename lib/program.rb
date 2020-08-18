@@ -1,4 +1,5 @@
 require_relative '../lib/input'
+require_relative '../lib/webpage'
 
 class Program
   attr_accessor :chosen_artist, :current_page
@@ -41,7 +42,6 @@ class Program
   end
 
   def change_page(web_address)
-    @current_page = web_address
+    @current_page = WebPage.new(web_address)
   end
-
 end

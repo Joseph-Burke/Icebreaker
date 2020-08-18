@@ -26,6 +26,4 @@ describe WebPage do
     end
   end
 
-
-
 end
