@@ -15,15 +15,4 @@ describe WebPage do
       end
     end
   end
-
-  describe '#get_artists' do
-    it 'changes @type_of_page to :search, :artist or :lyrics if the page meets certain criteria' do
-      [search_page, artist_page, lyrics_page].each_with_index do |page, i|
-        page.type_of_page = nil
-        page.determine_type_of_page
-        expect(page.type_of_page).to eql([:search, :artist, :lyrics, nil][i])
-      end
-    end
-  end
-
 end

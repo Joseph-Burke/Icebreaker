@@ -25,7 +25,7 @@ class WebPage
 
   WebPage::TYPES = {
     search: {
-      prefix: 'https://search.azlyrics.com/search',
+      prefix: 'https://search.azlyrics.com/search.php?q=',
       title_hook: 'AZLyrics - Search: ',
       body_hook: 'cf_page_artist = "";'
     },

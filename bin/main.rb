@@ -10,7 +10,6 @@ program = Program.new
 puts program.introduce
 
 puts program.request_artist
-
 program.receive_artist(gets)
 
 # Ask which song they would like to view
