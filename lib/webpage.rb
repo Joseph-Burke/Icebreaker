@@ -9,10 +9,10 @@ class WebPage
     @web_address = web_address
     @nokogiri = Nokogiri::HTML(URI.open(web_address))
     @type_of_page = nil
-    determine_type
+    determine_type_of_page
   end
 
-  def determine_type
+  def determine_type_of_page
     WebPage::TYPES.each do |key, hash|
       prefix_match = @web_address.include?(hash[:prefix])
       title_match = @nokogiri.title.include?(hash[:title_hook])
@@ -32,7 +32,7 @@ class WebPage
     artist: {
       prefix: 'https://www.azlyrics.com/',
       title_hook: ' Lyrics',
-      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->'
+      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* '
     },
     lyrics: {
       prefix: 'https://www.azlyrics.com/lyrics/',
@@ -41,19 +41,3 @@ class WebPage
     }
   }.freeze
 end
-
-search_webpage = Nokogiri::HTML(URI.open('https://search.azlyrics.com/search.php?q=michael+jackson'))
-artist_webpage = Nokogiri::HTML(URI.open('https://www.azlyrics.com/b/beatles.html'))
-lyrics_webpage = Nokogiri::HTML(URI.open('https://www.azlyrics.com/lyrics/beatles/misery.html'))
-
-# Identifying characteristics of each page
-puts search_webpage.title.include?('AZLyrics - Search: ') && search_webpage.to_s.include?('cf_page_artist = "";')
-puts artist_webpage.title.include?(' Lyrics') && artist_webpage.to_s.include?('<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->')
-puts lyrics_webpage.title.include?(' | AZLyrics.com') && lyrics_webpage.to_s.include?('<!-- MxM banner -->')
-
-webpage = WebPage.new('https://search.azlyrics.com/search.php?q=michael+jackson')
-puts webpage.type_of_page
-webpage = WebPage.new('https://www.azlyrics.com/b/beatles.html')
-puts webpage.type_of_page
-webpage = WebPage.new('https://www.azlyrics.com/lyrics/beatles/misery.html')
-puts webpage.type_of_page

@@ -1,10 +1,11 @@
 require_relative '../lib/input'
 
-class Interface
-  attr_accessor :chosen_artist
+class Program
+  attr_accessor :chosen_artist, :current_page
   def initialize
     @chosen_artist = nil
     @chosen_song = nil
+    @current_page = nil
   end
 
   def introduce
@@ -38,4 +39,9 @@ class Interface
   def request_display_style
     'Finally, to view lyrics karaoke-style, hit k. For a simple read-out, enter R'
   end
+
+  def change_page(web_address)
+    @current_page = web_address
+  end
+
 end
