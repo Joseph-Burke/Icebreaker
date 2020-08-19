@@ -76,34 +76,6 @@ class WebPage
     artist_links.each { |link| @content[link.inner_text] = link['href'] }
   end
 
-# div.row > 
-
-# Have a single method to fetch content that behaves differently according to the value of
-# @type_of_page.
-
-=begin
-  FETCH CONTENT
-
-    SEARCH
-      I want a Hash with three key-value pairs.
-      I HAVE DECIDED TO DISPLAY ONLY ARTIST SEARCH RESULTS TO BEGIN WITH
-
-      Keys: artist_results, album_results, song_results
-      Values: An array of Anchor items.
-
-    ARTIST
-      I want a Hash of Hashes.
-
-        Each Hash will have a string as its key and an array of Anchors as its value
-
-    LYRICS
-      I want a Hash with two key-value pairs.
-
-      Keys: song_title, song_lyrics
-      Values: A string containing the song title and an array of strings containing each line of the lyrics.
-
-=end
-
   WebPage::TYPES = {
     search: {
       prefix: 'https://search.azlyrics.com/search.php?q=',
