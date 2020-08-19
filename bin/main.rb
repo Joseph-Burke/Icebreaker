@@ -23,6 +23,16 @@ program = Program.new
 # # Get display style
 # puts program.request_display_style
 
-test_page = WebPage.new('https://search.azlyrics.com/search.php?q=the+beatles')
+# test_page = WebPage.new('https://search.azlyrics.com/search.php?q=the+beatles')
 
 # puts test_page.nokogiri.class
+
+search_page = WebPage.new('https://search.azlyrics.com/search.php?q=the+kinks')
+artist_page = WebPage.new('https://www.azlyrics.com/b/beachboys.html')
+lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/youreallygotme.html')
+
+# puts search_page.content
+# puts
+artist_page.content.each {|album, tracklist| puts album ; puts "\n"; puts tracklist; puts "\n"}
+
+# puts lyrics_page.content[:lyrics_text]
