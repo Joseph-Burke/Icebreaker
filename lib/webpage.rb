@@ -39,12 +39,10 @@ class WebPage
 
   def fetch_artist_songs
     return unless @type_of_page == :artist
-
   end
 
   def fetch_lyrics
-      return unless @type_of_page == :lyrics
-
+    return unless @type_of_page == :lyrics
   end
 
   WebPage::TYPES = {

@@ -31,5 +31,5 @@ end
 
 anchor = Anchor.new('<a href="https://www.azlyrics.com/b/beatles.html#10996"><b>The Beatles - "The Beatles (The White Album)"</b></a>')
 
-# puts anchor.href 
+# puts anchor.href
 # puts anchor.anchor_text
