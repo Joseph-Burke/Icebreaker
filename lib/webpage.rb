@@ -4,12 +4,14 @@ require 'open-uri'
 require 'pry'
 
 class WebPage
-  attr_accessor :web_address, :type_of_page, :nokogiri
+  attr_accessor :web_address, :type_of_page, :nokogiri, :content
   def initialize(web_address)
     @web_address = web_address
     @nokogiri = Nokogiri::HTML(URI.open(web_address))
     @type_of_page = nil
+    @content = nil
     determine_type_of_page
+    fetch_content
   end
 
   def determine_type_of_page
@@ -21,6 +23,28 @@ class WebPage
 
       @type_of_page = key
     end
+  end
+
+  def fetch_content
+    return fetch_search_results if @type_of_page == :search
+    return fetch_artist_songs if @type_of_page == :artist
+    return fetch_lyrics if @type_of_page == :lyrics
+  end
+
+  def fetch_search_results
+    return unless @type_of_page == :search
+
+    arr = @nokogiri.css('table.table a:not(.btn)')
+  end
+
+  def fetch_artist_songs
+    return unless @type_of_page == :artist
+
+  end
+
+  def fetch_lyrics
+      return unless @type_of_page == :lyrics
+
   end
 
   WebPage::TYPES = {

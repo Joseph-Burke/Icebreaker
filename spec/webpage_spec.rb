@@ -15,4 +15,28 @@ describe WebPage do
       end
     end
   end
+
+  # describe '#fetch_content' do
+  #   it 'returns the relevant content of webpage as an array of strings ready to be printed' do
+
+  #   end
+  # end
+
+  # describe '#fetch_search_results' do
+  #   it 'returns all results of a search page as a hash with each value being an array of strings' do
+
+  #   end
+  # end
+
+  # describe '#fetch_artist_songs' do
+  #   it "returns all of the songs listed on an artist's page as a hash, with each value being a an array of strings" do
+
+  #   end
+  # end
+
+  # describe '#fetch_lyrics' do
+  #   it 'returns the relevant content of webpage as an array of strings ready to be printed' do
+
+  #   end
+  # end
 end
