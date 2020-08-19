@@ -27,6 +27,7 @@ class WebPage
 
   def fetch_page_content
     fetch_lyrics_content if type_of_page == :lyrics
+    fetch_artist_content if type_of_page == :artist
   end
 
   def fetch_lyrics_content
@@ -46,6 +47,20 @@ class WebPage
     text_array.inject { |memo, array| memo.push("\n").concat(array) }
   end
 
+  def fetch_artist_content
+    @content = {}
+    current_album = nil
+    @nokogiri.css('#listAlbum > div').each do |e|
+      case e['class']
+      when 'album'
+        current_album = e.css('b').inner_text
+        @content[current_album] = []
+      when 'listalbum-item'
+        @content[current_album].push(e.css('a').inner_text)
+      end
+    end
+  end
+
 # Have a single method to fetch content that behaves differently according to the value of
 # @type_of_page.
 
@@ -59,7 +74,7 @@ class WebPage
       Values: An array of Anchor items.
 
     ARTIST
-      I want an array of Hashes.
+      I want a Hash of Hashes.
 
         Each Hash will have a string as its key and an array of Anchors as its value
 

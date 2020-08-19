@@ -2,7 +2,7 @@ require_relative '../lib/webpage.rb'
 
 describe WebPage do
   let(:search_page) { WebPage.new('https://search.azlyrics.com/search.php?q=the+beatles') }
-  let(:artist_page) { WebPage.new('https://www.azlyrics.com/b/beatles.html') }
+  let(:artist_page) { WebPage.new('https://www.azlyrics.com/c/coldplay.html') }
   let(:lyrics_page) { WebPage.new('https://www.azlyrics.com/lyrics/beatles/misery.html') }
   let(:google) { WebPage.new('www.google.com') }
   let(:lyrics_title) { "Misery" }
@@ -65,11 +65,18 @@ describe WebPage do
   #   end
   # end
 
-  describe '#fetch_lyrics_content' do
-    it 'returns the relevant content of a lyrics page as a hash with two key-value pairs: song_title and song_lyrics' do
-      lyrics_page.fetch_lyrics_content
-      expect(lyrics_page.content[:lyrics_title]).to eql(lyrics_title)
-      expect(lyrics_page.content[:lyrics_text]).to eql(lyrics_text)
+  # describe '#fetch_lyrics_content' do
+  #   it 'returns the relevant content of a lyrics page as a hash with two key-value pairs: song_title and song_lyrics' do
+  #     expect(lyrics_page.content[:lyrics_title]).to eql(lyrics_title)
+  #     expect(lyrics_page.content[:lyrics_text]).to eql(lyrics_text)
+  #   end
+  # end
+
+  describe '#fetch_artist_content' do
+    it 'returns the relevant content of an artist page as an array of hashes.' do
+      artist_page.fetch_artist_content
+      expect(artist_page.content.is_a?(Hash)).to eql(true)
+      artist_page.content.each { |key, val| expect(key.is_a?(String) && val.is_a?(Array)).to eql(true) }
     end
   end
 end
