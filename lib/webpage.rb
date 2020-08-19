@@ -11,39 +11,65 @@ class WebPage
     @type_of_page = nil
     @content = nil
     determine_type_of_page
-    fetch_content
+    fetch_page_content
   end
 
   def determine_type_of_page
-    WebPage::TYPES.each do |key, hash|
-      prefix_match = @web_address.include?(hash[:prefix])
-      title_match = @nokogiri.title.include?(hash[:title_hook])
-      body_match = @nokogiri.to_s.include?(hash[:body_hook])
+    WebPage::TYPES.each do |type, hooks|
+      prefix_match = @web_address.include?(hooks[:prefix])
+      title_match = @nokogiri.title.include?(hooks[:title_hook])
+      body_match = @nokogiri.to_s.include?(hooks[:body_hook])
       next unless prefix_match && title_match && body_match
 
-      @type_of_page = key
+      @type_of_page = type
     end
   end
 
-  def fetch_content
-    return fetch_search_results if @type_of_page == :search
-    return fetch_artist_songs if @type_of_page == :artist
-    return fetch_lyrics if @type_of_page == :lyrics
+  def fetch_page_content
+    fetch_lyrics_content if type_of_page == :lyrics
   end
 
-  def fetch_search_results
-    return unless @type_of_page == :search
-
-    arr = @nokogiri.css('table.table a:not(.btn)')
+  def fetch_lyrics_content
+    @content = {}
+    @content[:lyrics_title] = fetch_lyrics_title
+    @content[:lyrics_text] = fetch_lyrics_text
   end
 
-  def fetch_artist_songs
-    return unless @type_of_page == :artist
+  def fetch_lyrics_title
+    @nokogiri.css('.col-xs-12 :nth-child(5)').text.split('"')[1]
   end
 
-  def fetch_lyrics
-    return unless @type_of_page == :lyrics
+  def fetch_lyrics_text
+    text_array = @nokogiri.css('.col-xs-12 :nth-child(8)')[0..-2].text.split("\r")
+    text_array = text_array.join('').split("\n\n")
+    text_array.map! { |string| string.split("\n") }
+    text_array.inject { |memo, array| memo.push("\n").concat(array) }
   end
+
+# Have a single method to fetch content that behaves differently according to the value of
+# @type_of_page.
+
+=begin
+  FETCH CONTENT
+
+    SEARCH
+      I want a Hash with three key-value pairs.
+
+      Keys: artist_results, album_results, song_results
+      Values: An array of Anchor items.
+
+    ARTIST
+      I want an array of Hashes.
+
+        Each Hash will have a string as its key and an array of Anchors as its value
+
+    LYRICS
+      I want a Hash with two key-value pairs.
+
+      Keys: song_title, song_lyrics
+      Values: A string containing the song title and an array of strings containing each line of the lyrics.
+
+=end
 
   WebPage::TYPES = {
     search: {
