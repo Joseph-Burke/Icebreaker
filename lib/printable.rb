@@ -27,8 +27,8 @@ module Printable
   def request_artist_selection
     [
       "\n",
-      "Look! The little lyrics elves have brought back a list of artists!",
-      "Which of the above artists would you like to see lyrics for?",
+      'Look! The little lyrics elves have brought back a list of artists!',
+      'Which of the above artists would you like to see lyrics for?',
       "\n"
     ]
   end
