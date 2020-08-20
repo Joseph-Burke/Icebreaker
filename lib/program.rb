@@ -19,11 +19,11 @@ class Program
     type = page.type_of_page
     case type
     when :search
-      content.map(&:inner_text) 
+      content.map(&:inner_text)
 
     when :artist
       arr = []
-      content.each do |key, value| 
+      content.each do |key, value|
         arr.push("\n")
         arr.push(key)
         arr.push("\n")
@@ -36,7 +36,6 @@ class Program
       title = "\n" << content[:lyrics_title] << "\n"
       content[:lyrics_text].unshift(title)
     end
-
   end
 
   def receive_artist(string)

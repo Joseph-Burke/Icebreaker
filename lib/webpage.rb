@@ -122,8 +122,6 @@ test_lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/milkcowblu
 
 # test_artist_page.links.each { |key, value| puts "You selected #{key}. The address for those lyrics is #{value}." if key == 'The Road' }
 
-
-
 # test_search_page.content.each { |e| p e}
 # test_artist_page.content.each do |arr|
 #    arr.each { |key, val| puts val ; puts 'Woah, Nil!' if val.nil? }
