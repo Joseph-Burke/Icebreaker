@@ -12,7 +12,7 @@ class String
   end
 
   def make_search_term_array
-    clean.split('')
+    clean.split(' ')
   end
 
 end
