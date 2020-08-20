@@ -33,6 +33,6 @@ lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/youreallygotme.
 
 # puts search_page.content
 # puts
-artist_page.content.each {|album, tracklist| puts album ; puts "\n"; puts tracklist; puts "\n"}
+artist_page.content.each { |album, tracklist| puts album; puts "\n"; puts tracklist; puts "\n" }
 
 # puts lyrics_page.content[:lyrics_text]

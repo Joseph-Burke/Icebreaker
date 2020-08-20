@@ -2,16 +2,19 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require_relative './anchor'
 
 class WebPage
-  attr_accessor :web_address, :type_of_page, :nokogiri, :content
+  attr_accessor :web_address, :type_of_page, :nokogiri, :content, :links
   def initialize(web_address)
     @web_address = web_address
     @nokogiri = Nokogiri::HTML(URI.open(web_address))
     @type_of_page = nil
     @content = nil
+    @links = {}
     determine_type_of_page
     fetch_page_content
+    fetch_links
   end
 
   def determine_type_of_page
@@ -29,6 +32,16 @@ class WebPage
     fetch_lyrics_content if type_of_page == :lyrics
     fetch_artist_content if type_of_page == :artist
     fetch_search_content if type_of_page == :search
+  end
+
+  def fetch_links
+    return if type_of_page == :lyrics
+
+    if type_of_page == :artist
+      content.each do |_key, value_arr|
+        value_arr.each { |element| @links[element.inner_text] = element['href'] }
+      end
+    end
   end
 
   def fetch_lyrics_content
@@ -57,13 +70,13 @@ class WebPage
         current_album = e.css('b').inner_text.delete_suffix('"').delete_prefix('"')
         @content[current_album] = []
       when 'listalbum-item'
-        @content[current_album].push(e.css('a').inner_text)
+        @content[current_album].push(e.css('a')[0])
       end
     end
   end
 
   def fetch_search_content
-    @content = {}
+    @content = []
     artist_results_panel = nil
     search_panels = @nokogiri.css('div.panel')
     search_panels.each do |panel|
@@ -73,7 +86,7 @@ class WebPage
     return if artist_results_panel.nil?
 
     artist_links = artist_results_panel.css('table tr a')
-    artist_links.each { |link| @content[link.inner_text] = link['href'] }
+    artist_links.each { |e| @content.push(e) }
   end
 
   WebPage::TYPES = {
@@ -94,3 +107,27 @@ class WebPage
     }
   }.freeze
 end
+
+test_search_page = WebPage.new('https://search.azlyrics.com/search.php?q=the')
+test_artist_page = WebPage.new('https://www.azlyrics.com/k/kinks.html')
+test_lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
+
+test_artist_page.links.each { |key, value| puts "You selected #{key}. The address for those lyrics is #{value}." if key == 'The Road' }
+
+
+
+# test_search_page.content.each { |e| p e}
+# test_artist_page.content.each do |arr|
+#    arr.each { |key, val| puts val ; puts 'Woah, Nil!' if val.nil? }
+
+# end
+
+# puts test_lyrics_page.content[:lyrics_title]
+# puts test_lyrics_page.content[:lyrics_text]
+
+# p test_artist_page.content.values[0][0].methods
+
+# puts test_artist_page.content.values[0][0]
+# puts test_artist_page.content.values[0][0][0]['href']
+
+# test_artist_page.content.each { |key, value| puts key; puts "\n"; puts value; puts "\n\n"}

@@ -16,9 +16,3 @@ class Input
     "https://search.azlyrics.com/search.php?q=#{suffix}"
   end
 end
-
-input = Input.new('Miley Cyrus')
-
-# puts input.search_terms
-# address = input.generate_search_address
-# puts Nokogiri::HTML(URI.open(address))

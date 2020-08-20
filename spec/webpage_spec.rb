@@ -83,7 +83,7 @@ describe WebPage do
   describe '#fetch_search_content' do
     it 'returns a hash with three key-value pairs, storing arrays for artist results, album results and song results' do
       search_page_beatles.fetch_search_content
-      expect(search_page_beatles.content).to eql({'The Beatles' => artist_page_beatles.web_address})
+      expect(search_page_beatles.content).to eql({ 'The Beatles' => artist_page_beatles.web_address })
     end
   end
 end
