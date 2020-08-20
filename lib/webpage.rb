@@ -7,8 +7,8 @@ require_relative './anchor'
 class WebPage
   attr_accessor :web_address, :type_of_page, :nokogiri, :content, :links
   def initialize(web_address)
-    @web_address = web_address
-    @nokogiri = Nokogiri::HTML(URI.open(web_address))
+    @web_address = process_address(web_address)
+    @nokogiri = Nokogiri::HTML(URI.open(@web_address))
     @type_of_page = nil
     @content = nil
     @links = {}
@@ -25,6 +25,15 @@ class WebPage
       next unless prefix_match && title_match && body_match
 
       @type_of_page = type
+    end
+  end
+
+  def process_address(address)
+    # binding.pry
+    return address if address.include?('https://')
+    if address.start_with?('../')
+      output = address.gsub('../', 'https://www.azlyrics.com/')
+      return output
     end
   end
 

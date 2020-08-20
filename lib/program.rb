@@ -50,24 +50,27 @@ class Program
     @current_page = WebPage.new(web_address)
   end
 
+  def follow_link(string_input)
+    input = string_input.chomp.strip.downcase
+    current_page.links.each do |key, val|
+      song_title = key.chomp.strip.downcase
+      change_page(val) if input == song_title
+    end
+  end
+
   def go_to_search_page(search_terms_arr)
     new_address = WebPage::TYPES[:search][:prefix]
     new_address += search_terms_arr.join('+')
     change_page(new_address)
   end
-
-  def follow_link(html_element)
-    output = html_element
-    output = output.slice(output.index('https')...-1)
-    output = output.split("'")[0].split('"')[0]
-    change_page(output)
-  end
 end
 
 prog = Program.new
-prog.change_page('https://search.azlyrics.com/search.php?q=beyonce')
-puts prog.display_content
-prog.change_page('https://www.azlyrics.com/p/pixies.html')
-puts prog.display_content
-prog.change_page('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
-puts prog.display_content
+prog.change_page('https://search.azlyrics.com/search.php?q=beatles')
+# puts prog.display_content
+# prog.change_page('https://www.azlyrics.com/p/pixies.html')
+# puts prog.display_content
+# prog.change_page('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
+# puts prog.display_content
+
+# puts prog.current_page.links.keys

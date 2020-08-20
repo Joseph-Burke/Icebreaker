@@ -5,34 +5,24 @@ require 'pry'
 require_relative '../lib/program'
 
 program = Program.new
+program.change_page('https://search.azlyrics.com/search.php?q=beatles')
+loop_is_active = true
 
-# Introduction
-# puts program.introduce
 
-# puts program.request_artist
-# program.receive_artist(gets)
+while loop_is_active
+  puts program.request_artist
+  input = gets
+  program.go_to_search_page(input.chomp.split)
+  puts program.display_content
+  puts program.request_artist
+  input = gets
+  program.follow_link(input)
+  puts program.display_content
+  puts program.request_title
+  input = gets
+  program.follow_link(input)
+  puts program.display_content
+  loop_is_active = false
+end
 
-# # Ask which song they would like to view
-# puts program.request_title
 
-# # Display some popular songs
-# puts program.suggest_popular_titles
-# puts program.offer_discography
-# program.receive_title(gets)
-
-# # Get display style
-# puts program.request_display_style
-
-# test_page = WebPage.new('https://search.azlyrics.com/search.php?q=the+beatles')
-
-# puts test_page.nokogiri.class
-
-search_page = WebPage.new('https://search.azlyrics.com/search.php?q=the+kinks')
-artist_page = WebPage.new('https://www.azlyrics.com/b/beachboys.html')
-lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/youreallygotme.html')
-
-# puts search_page.content
-# puts
-artist_page.content.each { |album, tracklist| puts album; puts "\n"; puts tracklist; puts "\n" }
-
-# puts lyrics_page.content[:lyrics_text]
