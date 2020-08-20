@@ -6,10 +6,11 @@ require_relative '../lib/printable'
 
 class Program
   include Printable
-  attr_accessor :current_page, :viewing_preference
+  attr_accessor :current_page, :viewing_preference, :active
   def initialize
     @current_page = nil
     @viewing_preference = nil
+    @active = true
   end
 
   def display_content
@@ -71,7 +72,6 @@ class Program
     process_viewing_preference(input) if page_type == :artist && viewing_preference.nil?
     process_track_selection(input) if page_type == :artist && !viewing_preference.nil?
     process_onward_path(input) if page_type == :lyrics
-
   end
 
   def process_search_terms(input)
@@ -86,15 +86,16 @@ class Program
     input = input.clean.to_i
     valid = [1, 2]
     return unless valid.include?(input)
+
     case input
     when 1
-      @viewing_preference = :alpha
-    when 2
       @viewing_preference = :album
+    when 2
+      @viewing_preference = :alpha
     end
   end
 
-  def process_track_selection(input) 
+  def process_track_selection(input)
     follow_link(input)
   end
 
@@ -105,26 +106,12 @@ class Program
 
     case input
     when 1
-      @current_page = nil
-      @viewing_preference = nil
+      [@current_page, @viewing_preference].map! { nil }
     when 2
-      # Pick another song by the same artist
+      return_to_artist_page
+      @viewing_preference = nil
     when 3
-      # Close the program
+      self.active = false
     end
-
   end
-
-
 end
-
-prog = Program.new
-prog.change_page('https://www.azlyrics.com/lyrics/benlee/popqueen.html')
-
-prog.return_to_artist_page
-
-puts prog.current_page.type_of_page
-
-
-
-puts prog.process_input('jisjs')

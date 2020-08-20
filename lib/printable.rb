@@ -20,11 +20,12 @@ module Printable
       "\n",
       'Enter 1 or 2 to indicate your preference.',
       "\n"
-  ]
+    ]
   end
 
   def request_onward_path
     [
+      "\n",
       'That song really is a classic! Fancy another?',
       "\n",
       'Choose an option below:',
