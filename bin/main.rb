@@ -11,6 +11,9 @@ while loop_is_active
   puts program.request_artist
   input = gets
   program.go_to_search_page(input.chomp.split)
+
+
+  
   puts program.display_content
   puts program.request_artist
   input = gets

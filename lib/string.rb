@@ -14,4 +14,5 @@ class String
   def make_search_term_array
     clean.split('')
   end
+
 end

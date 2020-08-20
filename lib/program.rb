@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-require_relative '../lib/input'
+require_relative '../lib/string'
 require_relative '../lib/webpage'
 require_relative '../lib/printable'
 
@@ -55,5 +55,6 @@ class Program
     new_address += search_terms_arr.join('+')
     change_page(new_address)
   end
+
 end
 
