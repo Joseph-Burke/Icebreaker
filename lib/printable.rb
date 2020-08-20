@@ -11,15 +11,4 @@ module Printable
     'Which song of theirs would you like to see the lyrics for?'
   end
 
-  def suggest_popular_titles
-    'Here are some of their most popular songs:'
-  end
-
-  def offer_discography
-    "Short on ideas? To view this artist's entire discography, enter 'disc'"
-  end
-
-  def request_display_style
-    'Finally, to view lyrics karaoke-style, hit k. For a simple read-out, enter R'
-  end
 end

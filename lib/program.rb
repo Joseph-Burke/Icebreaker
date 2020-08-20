@@ -38,14 +38,6 @@ class Program
     end
   end
 
-  def receive_artist(string)
-    @chosen_artist = Input.new(string)
-  end
-
-  def receive_title(string)
-    @chosen_song = Input.new(string)
-  end
-
   def change_page(web_address)
     @current_page = WebPage.new(web_address)
   end
@@ -65,12 +57,3 @@ class Program
   end
 end
 
-prog = Program.new
-prog.change_page('https://search.azlyrics.com/search.php?q=beatles')
-# puts prog.display_content
-# prog.change_page('https://www.azlyrics.com/p/pixies.html')
-# puts prog.display_content
-# prog.change_page('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
-# puts prog.display_content
-
-# puts prog.current_page.links.keys

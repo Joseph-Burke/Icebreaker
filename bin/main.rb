@@ -5,7 +5,6 @@ require 'pry'
 require_relative '../lib/program'
 
 program = Program.new
-program.change_page('https://search.azlyrics.com/search.php?q=beatles')
 loop_is_active = true
 
 while loop_is_active

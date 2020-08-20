@@ -29,12 +29,9 @@ class WebPage
   end
 
   def process_address(address)
-    # binding.pry
     return address if address.include?('https://')
-    if address.start_with?('../')
-      output = address.gsub('../', 'https://www.azlyrics.com/')
-      return output
-    end
+
+    address.gsub('../', 'https://www.azlyrics.com/') if address.start_with?('../')
   end
 
   def fetch_page_content
