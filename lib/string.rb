@@ -4,7 +4,7 @@ require 'open-uri'
 
 class String
   def clean
-    chomp.strip.downcase
+    chomp.strip.downcase 
   end
 
   def remove_definite_article

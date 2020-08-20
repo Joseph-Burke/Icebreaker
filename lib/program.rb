@@ -9,7 +9,6 @@ class Program
   attr_accessor :current_page, :viewing_preference, :active
   def initialize
     @current_page = nil
-    @viewing_preference = nil
     @active = true
   end
 
@@ -33,7 +32,7 @@ class Program
       arr
 
     when :lyrics
-      title = "\n" << content[:lyrics_title] << "\n"
+      title = "\n" << current_page.content[:lyrics_title] << "\n"
       content[:lyrics_text].unshift(title)
     end
   end
@@ -46,7 +45,10 @@ class Program
     input = string_input.clean
     current_page.links.each do |key, val|
       song_title = key.clean
-      change_page(val) if input == song_title
+      if input == song_title
+        change_page(val)
+        break
+      end
     end
   end
 
@@ -69,8 +71,7 @@ class Program
 
     process_search_terms(input) if page_type.nil?
     process_search_selection(input) if page_type == :search
-    process_viewing_preference(input) if page_type == :artist && viewing_preference.nil?
-    process_track_selection(input) if page_type == :artist && !viewing_preference.nil?
+    process_track_selection(input) if page_type == :artist
     process_onward_path(input) if page_type == :lyrics
   end
 
@@ -80,19 +81,6 @@ class Program
 
   def process_search_selection(input)
     follow_link(input)
-  end
-
-  def process_viewing_preference(input)
-    input = input.clean.to_i
-    valid = [1, 2]
-    return unless valid.include?(input)
-
-    case input
-    when 1
-      @viewing_preference = :album
-    when 2
-      @viewing_preference = :alpha
-    end
   end
 
   def process_track_selection(input)
@@ -106,7 +94,8 @@ class Program
 
     case input
     when 1
-      [@current_page, @viewing_preference].map! { nil }
+      @current_page = nil
+      @viewing_preference = nil
     when 2
       return_to_artist_page
       @viewing_preference = nil

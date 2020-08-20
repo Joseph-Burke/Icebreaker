@@ -49,7 +49,7 @@ class WebPage
       end
     elsif type_of_page == :search
       content.each do |e|
-        @links[e.inner_text] = e['href']
+        @links[e.inner_text] = e['href'] unless links.length >= 5
       end
     end
   end
@@ -61,12 +61,13 @@ class WebPage
   end
 
   def fetch_lyrics_title
-    @nokogiri.css('.col-xs-12 :nth-child(5)').text.split('"')[1]
+    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
   end
 
   def fetch_lyrics_text
-    text_array = @nokogiri.css('.col-xs-12 :nth-child(8)')[0..-2].text.split("\r")
-    text_array = text_array.join('').split("\n\n")
+    text_string = @nokogiri.css('.container.main-page > div.row > div.col-xs-12 > div')[4].inner_text
+    text_array = text_string
+    text_array = text_array.delete("\r").split("\n\n")
     text_array.map! { |string| string.split("\n") }
     text_array.inject { |memo, array| memo.push("\n").concat(array) }
   end
@@ -117,29 +118,3 @@ class WebPage
     }
   }.freeze
 end
-
-test_search_page = WebPage.new('https://search.azlyrics.com/search.php?q=the')
-test_artist_page = WebPage.new('https://www.azlyrics.com/k/kinks.html')
-test_lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
-
-# puts test_search_page.links
-# puts test_artist_page.links
-# puts test_lyrics_page.links
-
-# test_artist_page.links.each { |key, value| puts "You selected #{key}. The address for those lyrics is #{value}." if key == 'The Road' }
-
-# test_search_page.content.each { |e| p e}
-# test_artist_page.content.each do |arr|
-#    arr.each { |key, val| puts val ; puts 'Woah, Nil!' if val.nil? }
-
-# end
-
-# puts test_lyrics_page.content[:lyrics_title]
-# puts test_lyrics_page.content[:lyrics_text]
-
-# p test_artist_page.content.values[0][0].methods
-
-# puts test_artist_page.content.values[0][0]
-# puts test_artist_page.content.values[0][0][0]['href']
-
-# test_artist_page.content.each { |key, value| puts key; puts "\n"; puts value; puts "\n\n"}
