@@ -97,7 +97,7 @@ class WebPage
     return if artist_results_panel.nil?
 
     artist_links = artist_results_panel.css('table tr a')
-    artist_links.each { |e| @content.push(e) }
+    artist_links.each { |e| @content.push(e) unless content.length >= 5}
   end
 
   WebPage::TYPES = {

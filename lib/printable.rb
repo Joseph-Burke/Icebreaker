@@ -1,14 +1,14 @@
 module Printable
   def introduce
     [
-      "\nWelcome to Icebreaker!\n\n",
+      "\nWelcome to Icebreaker!\n",
       "Icebreaker caters to all your song lyric needs, right here in the the Terminal. Less searching, more singing!\n\n"
     ]
   end
 
   def request_artist
     [
-      "Which artist's songs would you like to view?",
+      'Please enter the name of the artist whose lyrics you would like:',
       "\n"
     ]
   end
@@ -39,8 +39,8 @@ module Printable
       '"To err is human - but to really foul things up you need a computer."',
       "\t - Anonymous",
       "\n",
-      "I'm just a computer program. Try entering the artist again, exactly as you see it displayed.",
-      'Here are your options again:',
+      'Your input does not match any of the artists in the list!',
+      'Try entering the name of the artist again, exactly as you see it displayed.',
       "\n"
     ]
   end
@@ -51,8 +51,8 @@ module Printable
       '"To err is human - but to really foul things up you need a computer."',
       "\t - Anonymous",
       "\n",
-      "I'm just a computer program. Try entering the name of the song again, exactly as you see it displayed.",
-      'Here are your options again:',
+      'Your input does not match any of the songs in the list!',
+      'Try entering the name of the song again, exactly as you see it displayed.',
       "\n"
     ]
   end
@@ -75,7 +75,7 @@ module Printable
       '"Music is enough for a lifetime, but a lifetime is not enough for music."',
       "\t- Sergei Rachmaninov",
       "\n",
-      'Choose a song to see the lyrics for'
+      'Enter the title of one of the songs listed above to see its lyrics.'
     ]
   end
 
@@ -84,7 +84,6 @@ module Printable
       "\n",
       "\n",
       'That song really is a classic! Fancy another?',
-      "\n",
       'Choose an option below:',
       "\n",
       '1. Make another search',
@@ -97,6 +96,6 @@ module Printable
   end
 
   def farewell
-    '\nThanks for using Icebreaker! See you next time!\n'
+    "\nThanks for using Icebreaker! See you next time!\n\n"
   end
 end

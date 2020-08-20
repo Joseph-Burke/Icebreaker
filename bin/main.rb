@@ -10,7 +10,7 @@ puts program.introduce
 
 while program.active
 
-  # STEP 1
+  # STEP 1: Search for an artist
   while program.current_page.nil?
     puts program.request_artist
     program.process_input(gets)
@@ -21,7 +21,7 @@ while program.active
     end
   end
 
-  # STEP 2
+  # STEP 2: Choose one of the artists listed in the search results
   while program.current_page.type_of_page == :search
     puts "\n"
     puts program.display_content
@@ -30,23 +30,26 @@ while program.active
     puts program.invalid_artist unless program.current_page.type_of_page == :artist
   end
 
-  # STEP 3
+  # STEP 3: Choose one of the artist's songs
+  puts program.display_content if program.current_page.type_of_page == :artist
   while program.current_page.type_of_page == :artist
-    puts program.display_content
     puts program.request_title
     program.process_input(gets)
-    puts program.invalid_song if program.current_page.type_of_page == :artist
-    if program.current_page.type_of_page.nil?
-      puts program.invalid_webpage
-      program.current_page = nil
-      break
+    if program.current_page.type_of_page == :artist
+      puts program.display_content
+      puts program.invalid_song
     end
+    next unless program.current_page.type_of_page.nil?
+
+    puts program.invalid_webpage
+    program.current_page = nil
+    break
   end
   next if program.current_page.nil?
 
   puts program.display_content if program.current_page.type_of_page == :lyrics
 
-  # STEP 4
+  # STEP 4 Choose what to do after printing the lyrics.
   while program.current_page.type_of_page == :lyrics
     puts program.request_onward_path
     program.process_input(gets)
