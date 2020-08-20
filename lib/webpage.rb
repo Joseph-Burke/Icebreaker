@@ -116,9 +116,9 @@ test_search_page = WebPage.new('https://search.azlyrics.com/search.php?q=the')
 test_artist_page = WebPage.new('https://www.azlyrics.com/k/kinks.html')
 test_lyrics_page = WebPage.new('https://www.azlyrics.com/lyrics/kinks/milkcowblues.html')
 
-puts test_search_page.links
-puts test_artist_page.links
-puts test_lyrics_page.links
+# puts test_search_page.links
+# puts test_artist_page.links
+# puts test_lyrics_page.links
 
 # test_artist_page.links.each { |key, value| puts "You selected #{key}. The address for those lyrics is #{value}." if key == 'The Road' }
 
