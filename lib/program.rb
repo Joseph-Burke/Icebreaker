@@ -51,9 +51,9 @@ class Program
   end
 
   def follow_link(string_input)
-    input = string_input.chomp.strip.downcase
+    input = string_input.clean
     current_page.links.each do |key, val|
-      song_title = key.chomp.strip.downcase
+      song_title = key.clean
       change_page(val) if input == song_title
     end
   end

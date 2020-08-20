@@ -8,7 +8,6 @@ program = Program.new
 program.change_page('https://search.azlyrics.com/search.php?q=beatles')
 loop_is_active = true
 
-
 while loop_is_active
   puts program.request_artist
   input = gets
@@ -24,5 +23,3 @@ while loop_is_active
   puts program.display_content
   loop_is_active = false
 end
-
-

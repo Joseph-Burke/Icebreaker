@@ -9,10 +9,30 @@ class Input
   def initialize(string)
     @original_input = string
     @search_terms = string.strip.chomp.downcase.split(' ')
+
   end
 
-  def generate_search_address
-    suffix = search_terms.join('+')
-    "https://search.azlyrics.com/search.php?q=#{suffix}"
+  def clean_input
+    strip.chomp.downcase
+  end
+
+end
+
+
+class String
+  def clean
+    chomp.strip.downcase
+  end
+
+  def remove_definite_article
+    sub('the', '')
+  end
+
+  def make_search_term_array
+    self.clean.split('')
   end
 end
+
+dirty_string = "  HeY JuDe   "
+
+puts dirty_string.clean
