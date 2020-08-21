@@ -7,7 +7,10 @@
 I created Icebreaker for the capstone project of Microverse's Ruby module. I was tasked with creating a web-scraper and, being a great lover of music and a great hater of adverts, I set about creating a tool that could provide lyrics to most popular, well-known music in a simple, quick and ad-free format.
 
 
-![screenshot](./screenshots/collage_1.png)
+
+![screenshot](./screenshots/queen.png)
+![screenshot](./screenshots/bohemian_rhapsody.png)
+![screenshot](./screenshots/starman.png)
 
 
 ## Built With
@@ -60,11 +63,13 @@ ruby bin/main.rb
 
 ### Instructions
 
-> As mentioned above, Icebreaker needs no instructions do to its beautiful crafstmanship. You will be asked to enter a name of an artist to search for. 
+> As mentioned above, Icebreaker needs no instructions due to its beautiful crafstmanship. You will first be asked to enter a name of an artist to search for. 
 
-> Once the results of that search are displayed, enter the name of the artist you want and that artist's songs will then be listed, ordered by album.
+> Once the results of that search are displayed, You will be asked to enter the name of the artist you want and that artist's songs will then be listed, ordered by album.
 
-> Once again, type in your selection and the lyrics will be displayed. From there, Icebreaker will ask you for further direction. Enter 
+> Once again, type in your selection and the lyrics will be displayed. From there, Icebreaker will ask you for further direction (see below). Enter a number - 1, 2, or 3 - to search for a new song, see more songs from the same artist or exit Icebreaker.
+
+![screenshot](./screenshots/selection_by_number.png)
 
 ### Usage
 
