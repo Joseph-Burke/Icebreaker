@@ -29,6 +29,7 @@ module Printable
       "\n",
       'Look! The little lyrics elves have brought back a list of artists!',
       'Which of the above artists would you like to see lyrics for?',
+      'Enter your chosen artist below:',
       "\n"
     ]
   end
@@ -47,12 +48,11 @@ module Printable
 
   def invalid_song
     [
+      'Your input does not match any of the songs in the list!',
+      'Try entering the name of the song again, exactly as you see it displayed.',
       "\n",
       '"To err is human - but to really foul things up you need a computer."',
       "\t - Anonymous",
-      "\n",
-      'Your input does not match any of the songs in the list!',
-      'Try entering the name of the song again, exactly as you see it displayed.',
       "\n"
     ]
   end
@@ -68,6 +68,7 @@ module Printable
       "\n"
     ]
   end
+
 
   def request_title
     [
@@ -92,6 +93,14 @@ module Printable
       "\n",
       'Enter 1, 2 or 3 to indicate your preference.',
       "\n"
+    ]
+  end
+
+  def invalid_onward_path
+    [
+      "\n",
+      "That's not a number between 1 and 3.",
+      "Trust me, I'm a computer"
     ]
   end
 

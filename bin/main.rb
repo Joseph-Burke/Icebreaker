@@ -52,7 +52,12 @@ while program.active
   # STEP 4 Choose what to do after printing the lyrics.
   while program.current_page.type_of_page == :lyrics
     puts program.request_onward_path
-    program.process_input(gets)
+    input = gets
+    if %w[1 2 3].include?(input.clean)
+      program.process_input(input)
+    else
+      puts program.invalid_onward_path
+    end
     break if program.current_page.nil? || !program.active
   end
 
