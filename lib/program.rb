@@ -70,8 +70,7 @@ class Program
     page_type = @current_page.type_of_page if @current_page
 
     process_search_terms(input) if page_type.nil?
-    process_search_selection(input) if page_type == :search
-    process_track_selection(input) if page_type == :artist
+    process_link_selection(input) if %i[search artist].include?(page_type)
     process_onward_path(input) if page_type == :lyrics
   end
 
@@ -79,11 +78,7 @@ class Program
     go_to_search_page(input.make_search_term_array)
   end
 
-  def process_search_selection(input)
-    follow_link(input)
-  end
-
-  def process_track_selection(input)
+  def process_link_selection(input)
     follow_link(input)
   end
 
@@ -95,10 +90,8 @@ class Program
     case input
     when 1
       @current_page = nil
-      @viewing_preference = nil
     when 2
       return_to_artist_page
-      @viewing_preference = nil
     when 3
       self.active = false
     end

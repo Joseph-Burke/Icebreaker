@@ -2,7 +2,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require_relative './anchor'
 
 class WebPage
   attr_accessor :web_address, :type_of_page, :nokogiri, :content, :links
@@ -41,8 +40,6 @@ class WebPage
   end
 
   def fetch_links
-    return if type_of_page == :lyrics
-
     if type_of_page == :artist
       content.each do |_key, value_arr|
         value_arr.each { |element| @links[element.inner_text] = element['href'] }

@@ -37,15 +37,15 @@ describe WebPage do
     ]
   }
 
-  describe '#determine_type_of_page' do
-    it 'changes @type_of_page to :search, :artist or :lyrics if the page meets certain criteria' do
-      [search_page_beatles, artist_page_beatles, lyrics_page].each_with_index do |page, i|
-        page.type_of_page = nil
-        page.determine_type_of_page
-        expect(page.type_of_page).to eql([:search, :artist, :lyrics, nil][i])
-      end
-    end
-  end
+  # describe '#determine_type_of_page' do
+  #   it 'changes @type_of_page to :search, :artist or :lyrics if the page meets certain criteria' do
+  #     [search_page_beatles, artist_page_beatles, lyrics_page].each_with_index do |page, i|
+  #       page.type_of_page = nil
+  #       page.determine_type_of_page
+  #       expect(page.type_of_page).to eql([:search, :artist, :lyrics, nil][i])
+  #     end
+  #   end
+  # end
 
   # describe '#fetch_content' do
   #   it 'returns the relevant content of webpage as an array of strings ready to be printed' do
@@ -80,10 +80,10 @@ describe WebPage do
   #   end
   # end
 
-  describe '#fetch_search_content' do
-    it 'returns a hash with three key-value pairs, storing arrays for artist results, album results and song results' do
-      search_page_beatles.fetch_search_content
-      expect(search_page_beatles.content).to eql({ 'The Beatles' => artist_page_beatles.web_address })
-    end
-  end
+  # describe '#fetch_search_content' do
+  #   it 'returns a hash with three key-value pairs, storing arrays for artist results, album results and song results' do
+  #     search_page_beatles.fetch_search_content
+  #     expect(search_page_beatles.content).to eql({ 'The Beatles' => artist_page_beatles.web_address })
+  #   end
+  # end
 end
