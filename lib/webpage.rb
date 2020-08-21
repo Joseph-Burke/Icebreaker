@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
 
 class WebPage
   attr_accessor :web_address, :type_of_page, :nokogiri, :content, :links
