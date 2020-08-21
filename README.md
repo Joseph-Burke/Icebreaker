@@ -24,7 +24,7 @@ I created Icebreaker for the capstone project of Microverse's Ruby module. I was
 
 [Live Demo Link](https://repl.it/@JosephBurke2/Icebreaker#lib/webpage.rb)
 
-**IMPORTANT: Live Demo may hit an error "403 Forbidden" which is related to the open-uri gem. This can be avoided by opening the Live Demo in an incognito tab :)**
+**IMPORTANT: Live Demo may hit an error "403 Forbidden" which is related to the open-uri gem. This can be avoided by opening the Live Demo in an incognito tab. Local access is recommended for reliability.**
 
 ---
 
@@ -32,7 +32,7 @@ I created Icebreaker for the capstone project of Microverse's Ruby module. I was
 
 ### Quick Access
 
-For those who want to jump right in, the [Live Demo](https://repl.it/@JosephBurke2/Icebreaker#lib/webpage.rb) is recommended. You will be directed to a repl.it where you can immediately hit the "Run Code" button and see what happens.
+For those who want to jump right in, head to the [Live Demo](https://repl.it/@JosephBurke2/Icebreaker#lib/webpage.rb). You will be directed to a repl.it where you can immediately hit the "Run Code" button and see what happens.
 
 ### Local Access
 
