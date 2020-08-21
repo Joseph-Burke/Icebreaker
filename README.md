@@ -4,7 +4,7 @@
 
 **Icebreaker is a web-scraper that fetches and displays song lyrics.**
 
-I created Icebreaker for the capstone project of Microverse's Ruby module. I was tasked with creating a web-scraper and, being a great lover of music and a great hater of adverts, I set about creating a tool that could provide lyrics to most popular, well-known music in a simple, quick and ad-free format.
+I created Icebreaker for the capstone project of Microverse's Ruby module. I was tasked with creating a web-scraper and, being a great lover of music and a great hater of adverts, I set about creating a tool that could provide lyrics to most popular music in a simple, quick and ad-free format.
 
 
 
@@ -70,7 +70,7 @@ ruby bin/main.rb
 
 > Once the results of that search are displayed, You will be asked to enter the name of the artist you want and that artist's songs will then be listed, ordered by album.
 
-> Once again, type in your selection and the lyrics will be displayed. From there, Icebreaker will ask you for further direction (see below). Enter a number - 1, 2, or 3 - to search for a new song, see more songs from the same artist or exit Icebreaker.
+> Once again, type in your selection and the lyrics will be displayed. From there, Icebreaker will ask you for further direction (see below). Enter a number (1, 2, or 3) to search for a new song, see more songs from the same artist or exit Icebreaker.
 
 ![screenshot](./screenshots/selection_by_number.png)
 
@@ -88,11 +88,11 @@ ruby bin/main.rb
 
 ### Project Structure
 
-- **./bin:** The bin folder contains only the **main.rb** file. This is the executable file, and the only file to contain puts and gets methods.
-- **./lib:** The lib folder contains class, method and constant definitions that are involved in the program:
+- **./bin:** The bin folder contains only the **main.rb** file. *This is the only executable file*, and the only file to contain puts and gets methods.
+- **./lib:** *Files in the lib folder are not intended to be run themselves*. They simply supply bin/main.rb with the class, method and constant definitions that are involved in the program:
   
   1. **program.rb** for the Program class. This class possesses the majority of the methods called in bin/main.rb
-  2. **webpage.rb** for the WebPage class. This class is concerned with gathering and processing the html documents are then scraped for relevant information.
+  2. **webpage.rb** for the WebPage class. This class is concerned with gathering and processing the html documents which are then scraped for relevant information.
   3. **printable.rb** contains the Printable module. This module is included in the Program class and is simply a means of storing uncomplicated, space-consuming methods out of sight.
   4. **string.rb** contains the String class, which I have added 3 utility methods to.
 
