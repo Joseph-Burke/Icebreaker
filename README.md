@@ -40,12 +40,7 @@ For users who wish to store the project locally, follow these instructions:
 
 ### Prerequisites
 
-First, make sure you have the following already set up on your computer, and follow the links if not.
-
-- [Ruby](https://www.ruby-lang.org/en/downloads/)
-- [Nokogiri](https://nokogiri.org/)
-- [Open-uri] - (Ships as part of Ruby, no need to install additionally)
-- [RSpec](https://rubygems.org/gems/rspec/versions/3.4.0) (Optional, for testing)
+The only true prerequisite is [Ruby](https://www.ruby-lang.org/en/downloads/). Ruby gems such as [Nokogiri](https://nokogiri.org/) and [RSpec](https://rubygems.org/gems/rspec/versions/3.4.0) are also used in the project, but they can be installed very easily using [Bundler](https://bundler.io/).
 
 ### Setup
 
@@ -56,11 +51,16 @@ First, make sure you have the following already set up on your computer, and fol
 git clone https://github.com/Joseph-Burke/Icebreaker
 ```
 4. After a few short moments, the project will be downloaded. Navigate into it with `cd Icebreaker`
-5. You're now inside the downloaded project! Congratulations. From here, the line of code you need in order to run Icebreaker is simply:
+5. You're now inside the downloaded project! Congratulations. The next step is to install project dependencies using the following line of code:
+```
+bundle install
+```
+
+6. Great! Now that dependencies are present, the only line of code you need in order to run Icebreaker is simply:
 ```
 ruby bin/main.rb
 ```
-6. Icebreaker will commence in the Terminal window, and all you have to do are follow its instructions. The lyrics of the world's best songs are now at your fingertips.
+7. Icebreaker will commence in the Terminal window, and all you have to do is follow its instructions. The lyrics of the world's best songs are now at your fingertips.
 
 ![screenshot](./screenshots/introduction.png)
 
