@@ -27,12 +27,6 @@ class WebPage
     end
   end
 
-  def process_address(address)
-    return address if address.include?('https://')
-
-    address.gsub('../', 'https://www.azlyrics.com/') if address.start_with?('../')
-  end
-
   def fetch_page_content
     fetch_lyrics_content if type_of_page == :lyrics
     fetch_artist_content if type_of_page == :artist
@@ -114,4 +108,12 @@ class WebPage
       body_hook: '<!-- MxM banner -->'
     }
   }.freeze
+
+  private
+
+  def process_address(address)
+    return address if address.include?('https://')
+
+    address.gsub('../', 'https://www.azlyrics.com/') if address.start_with?('../')
+  end
 end
