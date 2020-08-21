@@ -62,6 +62,8 @@ ruby bin/main.rb
 ```
 6. Icebreaker will commence in the Terminal window, and all you have to do are follow its instructions. The lyrics of the world's best songs are now at your fingertips.
 
+![screenshot](./screenshots/introduction.png)
+
 ### Instructions
 
 > As mentioned above, Icebreaker needs no instructions due to its beautiful crafstmanship. You will first be asked to enter a name of an artist to search for. 

@@ -4,8 +4,8 @@ describe WebPage do
   let(:search_page) { WebPage.new('https://search.azlyrics.com/search.php?q=the+beatles') }
   let(:artist_page) { WebPage.new('https://www.azlyrics.com/b/beatles.html') }
   let(:lyrics_page) { WebPage.new('https://www.azlyrics.com/lyrics/beatles/misery.html') }
-  let(:lyrics_title) { "Misery" }
-  let(:lyrics_text) {
+  let(:lyrics_title) { 'Misery' }
+  let(:lyrics_text) do
     [
       "\n",
       'The world is treating me bad... Misery',
@@ -34,7 +34,7 @@ describe WebPage do
       'In misery (Ooh ee ooh ooh)',
       'My misery (La la la la la la)'
     ]
-  }
+  end
 
   describe '#determine_type_of_page' do
     it 'changes @type_of_page to :search, :artist or :lyrics if the page meets certain criteria' do

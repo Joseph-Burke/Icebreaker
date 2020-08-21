@@ -2,7 +2,8 @@ module Printable
   def introduce
     [
       "\nWelcome to Icebreaker!\n",
-      "Icebreaker caters to all your song lyric needs, right here in the the Terminal. Less searching, more singing!\n\n"
+      'Icebreaker caters to all your song lyric needs, right here in the the Terminal.',
+      "Less searching, more singing!\n\n"
     ]
   end
 
@@ -61,14 +62,14 @@ module Printable
     [
       "\n",
       "What's that, little lyrics elves? ",
-      'The lyrics that the nice user wanted are on a webpage that does not conform to the patterns you use to identify and analyse webpages?! Oh no!',
+      'The lyrics that the nice user wanted are on a webpage that does not conform to the patterns you use to identify
+ and analyse webpages?! Oh no!',
       "\n",
       'Thanks for letting us know, little elves!',
       'Initiate reboot!',
       "\n"
     ]
   end
-
 
   def request_title
     [

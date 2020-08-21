@@ -6,13 +6,13 @@ require_relative '../lib/webpage.rb'
 
 describe Program do
   let(:program) { Program.new }
-  let(:search_page) { WebPage.new(search_address)}
-  let(:artist_page) { WebPage.new(artist_address)}
-  let(:lyrics_page) { WebPage.new(lyrics_address)}
+  let(:search_page) { WebPage.new(search_address) }
+  let(:artist_page) { WebPage.new(artist_address) }
+  let(:lyrics_page) { WebPage.new(lyrics_address) }
   let(:search_address) { 'https://search.azlyrics.com/search.php?q=the+beatles' }
   let(:artist_address) { 'https://www.azlyrics.com/b/beatles.html' }
   let(:lyrics_address) { 'https://www.azlyrics.com/lyrics/beatles/twistandshout.html' }
-  let(:search_terms) { %w[the beatles]}
+  let(:search_terms) { %w[the beatles] }
 
   describe '#initalize' do
     it 'creates a new instance of the Program class' do
@@ -33,7 +33,7 @@ describe Program do
       program.current_page = search_page
       output = program.display_content
       expect(output.is_a?(Array)).to eql(true)
-      output.each { |e| expect(e.is_a?(String)).to eql(true)}
+      output.each { |e| expect(e.is_a?(String)).to eql(true) }
     end
   end
 
@@ -87,7 +87,8 @@ describe Program do
       expect(program.current_page).to be_nil
     end
 
-    it "return current_page to the song's artist's page if the user inputs 2 and the current_page.type_of_page is :lyrics" do
+    it "sets current_page to the song's artist's page if the user inputs 2 and the current_page.type_of_page
+ is :lyrics" do
       program.current_page = lyrics_page
       program.process_input('2')
       expect(program.current_page.web_address).to eql(artist_address)
