@@ -4,7 +4,7 @@
 
 **Icebreaker is a web-scraper that fetches and displays song lyrics.**
 
-I created Icebreaker for the capstone project of Microverse's Ruby module. I was tasked with creating a web-scraper and, being a great lover of music and a great hater of adverts, I set about creating a tool that could provide lyrics to most popular, well-known music in a simple, quick and ad-free format.
+I created Icebreaker for the capstone project of Microverse's Ruby module. I was tasked with creating a web-scraper and, being a great lover of music and a great hater of adverts, I set about creating a tool that could provide lyrics to most popular music in a simple, quick and ad-free format.
 
 
 
