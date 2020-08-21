@@ -8,7 +8,7 @@ module Printable
 
   def request_artist
     [
-      'Please enter the name of the artist whose lyrics you would like:',
+      'Please enter the name of the artist whose lyrics you would like to enjoy:',
       "\n"
     ]
   end
@@ -100,7 +100,7 @@ module Printable
     [
       "\n",
       "That's not a number between 1 and 3.",
-      "Trust me, I'm a computer"
+      "Trust me, I'm a computer."
     ]
   end
 
