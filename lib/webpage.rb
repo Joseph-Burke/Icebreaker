@@ -3,7 +3,8 @@ require 'nokogiri'
 require 'open-uri'
 
 class WebPage
-  attr_accessor :web_address, :type_of_page, :nokogiri, :content, :links
+  attr_reader :nokogiri, :links
+  attr_accessor :web_address, :type_of_page, :content
   def initialize(web_address)
     @web_address = process_address(web_address)
     @nokogiri = Nokogiri::HTML(URI.open(@web_address))
