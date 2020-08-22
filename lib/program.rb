@@ -6,7 +6,7 @@ require_relative '../lib/printable'
 
 class Program
   include Printable
-  attr_accessor :current_page, :viewing_preference, :active
+  attr_accessor :current_page, :active
   def initialize
     @current_page = nil
     @active = true

@@ -26,9 +26,9 @@ class WebPage
 
   def determine_type_of_page
     WebPage::TYPES.each do |type, hooks|
-      prefix_match = @web_address.include?(hooks[:prefix])
-      title_match = @nokogiri.title.include?(hooks[:title_hook])
-      body_match = @nokogiri.to_s.include?(hooks[:body_hook])
+      prefix_match = web_address.include?(hooks[:prefix])
+      title_match = nokogiri.title.include?(hooks[:title_hook])
+      body_match = nokogiri.to_s.include?(hooks[:body_hook])
       next unless prefix_match && title_match && body_match
 
       @type_of_page = type
@@ -70,13 +70,13 @@ class WebPage
   def fetch_artist_content
     @content = {}
     current_album = nil
-    @nokogiri.css('#listAlbum > div').each do |e|
+    nokogiri.css('#listAlbum > div').each do |e|
       case e['class']
       when 'album'
         current_album = e.css('b').inner_text.delete_suffix('"').delete_prefix('"')
-        @content[current_album] = []
+        content[current_album] = []
       when 'listalbum-item'
-        @content[current_album].push(e.css('a')[0])
+        content[current_album].push(e.css('a')[0])
       end
     end
   end
@@ -92,11 +92,11 @@ class WebPage
     return if artist_results_panel.nil?
 
     artist_links = artist_results_panel.css('table tr a')
-    artist_links.each { |e| @content.push(e) unless content.length >= 5 }
+    artist_links.each { |e| content.push(e) unless content.length >= 5 }
   end
 
   def fetch_lyrics_title
-    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
+    nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
   end
 
   WebPage::TYPES = {
