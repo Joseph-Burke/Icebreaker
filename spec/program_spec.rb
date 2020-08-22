@@ -31,15 +31,16 @@ describe Program do
     it 'returns a printable array of strings' do
       program.current_page = search_page
       output = program.display_content
-      expect(output.is_a?(Array)).to eql(true)
-      output.each { |e| expect(e.is_a?(String)).to eql(true) }
+      expect(output).to be_a(Array)
+      output.each { |e| expect(e).to be_a(String) }
     end
   end
 
   describe '#change_page' do
     it "sets the Program's @current_page attribute to a WebPage object" do
       program.change_page(search_address)
-      expect(program.current_page).to be_an_instance_of(WebPage)
+      expect(program.current_page).not_to be_nil
+      expect(program.current_page).to be_a(WebPage)
     end
   end
 
@@ -47,6 +48,7 @@ describe Program do
     it "changes the current_page by following a link in the current_page's @links hash" do
       program.current_page = search_page
       program.follow_link('the beatles')
+      expect(program.current_page).not_to be_nil
       expect(program.current_page.type_of_page).to eql(:artist)
     end
   end
@@ -60,8 +62,9 @@ describe Program do
 
   describe '#return_to_artist_page' do
     it "changes the current_address from a lyrics page to the artist page of the song's artist" do
-      program.current_page = artist_page
+      program.current_page = lyrics_page
       program.return_to_artist_page
+      expect(program.current_page).not_to eql(lyrics_page)
       expect(program.current_page.web_address).to eql(artist_address)
     end
   end
@@ -69,6 +72,7 @@ describe Program do
   describe '#process_input' do
     it 'changes the current_page to a search page if the current_page.type_of_page is nil' do
       program.process_input('the beatles')
+      expect(program.current_page.type_of_page).not_to be_nil
       expect(program.current_page.web_address).to eql(search_address)
     end
 
@@ -90,12 +94,14 @@ describe Program do
  is :lyrics" do
       program.current_page = lyrics_page
       program.process_input('2')
+      expect(program.current_page.web_address).not_to eql(lyrics_address)
       expect(program.current_page.web_address).to eql(artist_address)
     end
 
     it 'sets self_active to false if the user inputs 3 and the current_page.type_of_page is :lyrics' do
       program.current_page = lyrics_page
       program.process_input('3')
+      expect(program.active).not_to eql(true)
       expect(program.active).to eql(false)
     end
   end
@@ -119,7 +125,7 @@ describe Program do
     it 'sets the current_page to nil if passed "1" as a string' do
       program.current_page = lyrics_page
       program.process_input('1')
-      expect(program.current_page).to eql(nil)
+      expect(program.current_page).to be_nil
     end
 
     it "sets the current_page to the artist page of the current page's artist if passed '2' as a string" do
