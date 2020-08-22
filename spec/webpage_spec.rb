@@ -40,7 +40,7 @@ describe WebPage do
     it 'changes @type_of_page to :search, :artist or :lyrics if the page meets certain criteria' do
       [search_page, artist_page, lyrics_page].each_with_index do |page, i|
         page.type_of_page = nil
-        page.determine_type_of_page
+        page.send(:determine_type_of_page)
         expect(page.type_of_page).not_to be_nil
         expect(page.type_of_page).to eql(%i[search artist lyrics][i])
       end
@@ -68,7 +68,7 @@ describe WebPage do
 
   describe '#fetch_artist_content' do
     it 'sets @content equal to an array of hashes.' do
-      artist_page.fetch_artist_content
+      artist_page.send(:fetch_artist_content)
       expect(artist_page.content).not_to be_nil
       expect(artist_page.content).to be_a(Hash)
       artist_page.content.each { |key, val| expect(key.is_a?(String) && val.is_a?(Array)).to eql(true) }
@@ -77,7 +77,7 @@ describe WebPage do
 
   describe '#fetch_search_content' do
     it 'sets @content equal to an array of links in Nokogiri::XML::Element format.' do
-      search_page.fetch_search_content
+      search_page.send(:fetch_search_content)
       expect(search_page.content).not_to be_nil
       expect(search_page.content).to be_a(Array)
       search_page.content.each { |e| expect(e).to be_a(Nokogiri::XML::Element) }

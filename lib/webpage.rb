@@ -16,6 +16,36 @@ class WebPage
     fetch_links
   end
 
+  def fetch_lyrics_title
+    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
+  end
+
+  WebPage::TYPES = {
+    search: {
+      prefix: 'https://search.azlyrics.com/search.php?q=',
+      title_hook: 'AZLyrics - Search: ',
+      body_hook: 'cf_page_artist = "";'
+    },
+    artist: {
+      prefix: 'https://www.azlyrics.com/',
+      title_hook: ' Lyrics',
+      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* '
+    },
+    lyrics: {
+      prefix: 'https://www.azlyrics.com/lyrics/',
+      title_hook: ' | AZLyrics.com',
+      body_hook: '<!-- MxM banner -->'
+    }
+  }.freeze
+
+  private
+
+  def process_address(address)
+    return address if address.include?('https://')
+
+    address.gsub('../', 'https://www.azlyrics.com/') if address.start_with?('../')
+  end
+
   def determine_type_of_page
     WebPage::TYPES.each do |type, hooks|
       prefix_match = @web_address.include?(hooks[:prefix])
@@ -25,12 +55,6 @@ class WebPage
 
       @type_of_page = type
     end
-  end
-
-  def fetch_page_content
-    fetch_lyrics_content if type_of_page == :lyrics
-    fetch_artist_content if type_of_page == :artist
-    fetch_search_content if type_of_page == :search
   end
 
   def fetch_links
@@ -51,8 +75,10 @@ class WebPage
     @content[:lyrics_text] = fetch_lyrics_text
   end
 
-  def fetch_lyrics_title
-    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
+  def fetch_page_content
+    fetch_lyrics_content if type_of_page == :lyrics
+    fetch_artist_content if type_of_page == :artist
+    fetch_search_content if type_of_page == :search
   end
 
   def fetch_lyrics_text
@@ -91,29 +117,8 @@ class WebPage
     artist_links.each { |e| @content.push(e) unless content.length >= 5 }
   end
 
-  WebPage::TYPES = {
-    search: {
-      prefix: 'https://search.azlyrics.com/search.php?q=',
-      title_hook: 'AZLyrics - Search: ',
-      body_hook: 'cf_page_artist = "";'
-    },
-    artist: {
-      prefix: 'https://www.azlyrics.com/',
-      title_hook: ' Lyrics',
-      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* '
-    },
-    lyrics: {
-      prefix: 'https://www.azlyrics.com/lyrics/',
-      title_hook: ' | AZLyrics.com',
-      body_hook: '<!-- MxM banner -->'
-    }
-  }.freeze
-
-  private
-
-  def process_address(address)
-    return address if address.include?('https://')
-
-    address.gsub('../', 'https://www.azlyrics.com/') if address.start_with?('../')
+  def fetch_lyrics_title
+    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
   end
+
 end

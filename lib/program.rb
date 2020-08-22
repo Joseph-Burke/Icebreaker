@@ -37,9 +37,15 @@ class Program
     end
   end
 
-  def change_page(web_address)
-    @current_page = WebPage.new(web_address)
+  def process_input(input)
+    page_type = @current_page.type_of_page if @current_page
+
+    process_search_terms(input) if page_type.nil?
+    process_link_selection(input) if %i[search artist].include?(page_type)
+    process_onward_path(input) if page_type == :lyrics
   end
+
+  private 
 
   def follow_link(string_input)
     input = string_input.clean
@@ -50,6 +56,10 @@ class Program
         break
       end
     end
+  end
+
+  def change_page(web_address)
+    @current_page = WebPage.new(web_address)
   end
 
   def go_to_search_page(search_terms_arr)
@@ -64,14 +74,6 @@ class Program
     artist_page_anchor = current_page.nokogiri.css('.col-xs-12 > .lyricsh > h2 > a')[0]
     artist_web_address = artist_page_anchor['href'].prepend('https:')
     change_page(artist_web_address)
-  end
-
-  def process_input(input)
-    page_type = @current_page.type_of_page if @current_page
-
-    process_search_terms(input) if page_type.nil?
-    process_link_selection(input) if %i[search artist].include?(page_type)
-    process_onward_path(input) if page_type == :lyrics
   end
 
   def process_search_terms(input)
