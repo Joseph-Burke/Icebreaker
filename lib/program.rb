@@ -45,7 +45,7 @@ class Program
     process_onward_path(input) if page_type == :lyrics
   end
 
-  private 
+  private
 
   def follow_link(string_input)
     input = string_input.clean

@@ -16,28 +16,6 @@ class WebPage
     fetch_links
   end
 
-  def fetch_lyrics_title
-    @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
-  end
-
-  WebPage::TYPES = {
-    search: {
-      prefix: 'https://search.azlyrics.com/search.php?q=',
-      title_hook: 'AZLyrics - Search: ',
-      body_hook: 'cf_page_artist = "";'
-    },
-    artist: {
-      prefix: 'https://www.azlyrics.com/',
-      title_hook: ' Lyrics',
-      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* '
-    },
-    lyrics: {
-      prefix: 'https://www.azlyrics.com/lyrics/',
-      title_hook: ' | AZLyrics.com',
-      body_hook: '<!-- MxM banner -->'
-    }
-  }.freeze
-
   private
 
   def process_address(address)
@@ -121,4 +99,21 @@ class WebPage
     @nokogiri.css('.row > .col-xs-12 > b').inner_text.split('"')[1]
   end
 
+  WebPage::TYPES = {
+    search: {
+      prefix: 'https://search.azlyrics.com/search.php?q=',
+      title_hook: 'AZLyrics - Search: ',
+      body_hook: 'cf_page_artist = "";'
+    },
+    artist: {
+      prefix: 'https://www.azlyrics.com/',
+      title_hook: ' Lyrics',
+      body_hook: '<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* '
+    },
+    lyrics: {
+      prefix: 'https://www.azlyrics.com/lyrics/',
+      title_hook: ' | AZLyrics.com',
+      body_hook: '<!-- MxM banner -->'
+    }
+  }.freeze
 end
